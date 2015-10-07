@@ -1,14 +1,29 @@
 <!doctype html>
 <html>
   <head>
+    <!-- FIREBASE -->
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <!-- jQUERY -->
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <!-- css -->
     <link rel='stylesheet' type='text/css' href='/resources/tutorial/css/example.css'>
+    <!--BOOTSTRAP (CSS)-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!--BOOTSTRAP (JAVASCRIPT) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div id='messagesDiv'></div>
-    <input type='text' id='nameInput' placeholder='Name'>
-    <input type='text' id='messageInput' placeholder='Message'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-2'>
+          <input type='text' id='nameInput' placeholder='Name'>
+        </div>
+        <div class='col-md-10'>
+           <div id='messagesDiv'></div>
+           <input type='text' id='messageInput' placeholder='Message'>
+       </div>
+     </div>
+   </div>
     <script>
       var myDataRef = new Firebase('https://george-slack-clone.firebaseio.com/');
       $('#messageInput').keypress(function (e) {
