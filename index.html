@@ -37,12 +37,12 @@
         <div class='row'>
           <div class="col-md-3"></div>
           <div class="col-md-3">
-            <a id='twitter-signin' href='javascript:login('twitter');'>
+            <a id='twitter-signin' href="javascript:login('twitter');">
               <i id='twitter-signin-btn' class='fa fa-twitter-square fa-5x'></i>
               <p> Twitter </p>
           </div>
           <div class="col-md-3">
-            <a id='facebook-signin' href='javascript:login('facebook');'>
+            <a id='facebook-signin' href="javascript:login('facebook');">
               <i id='facebook-signin-btn' class='fa fa-facebook-square fa-5x'></i>
               <p>Facebook</p>
           </div>
@@ -70,15 +70,20 @@
           $('#messageInput').val('');
         }
       });
-
-      function login(provider) {
-        console.log("Login with", provider);
-
-      }
       myDataRef.on('child_added', function(snapshot) {
         var message = snapshot.val();
         displayChatMessage(message.name, message.text);
       });
+        function login(provider){
+        console.log("Login with", provider);
+        myDataRef.authWithOAuthPopup(provider, function(error, authData) {
+           if (error) {
+            console.log("Login Failed!", error);
+          } else {
+            console.log("Authenticated successfully with payload:", authData);
+          }
+        });
+      }
       function displayChatMessage(name, text) {
         $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
