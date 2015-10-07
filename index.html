@@ -18,7 +18,7 @@
     <div class='container'>
       <div class='row'>
         <div class='col-md-2 visit'>
-          <input type='text' id='nameInput' placeholder='Name'>
+          <p>Channels</p>
         </div>
         <div class='col-md-10'>
            <div id='messagesDiv' class='messages'></div>
@@ -59,12 +59,24 @@
       var myDataRef = new Firebase('https://george-slack-clone.firebaseio.com/');
       var name = '';
       var authModal = $('#auth-modal').modal( {show: false});
+     function authDataCallback(authData) {
+      if (authData) {
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+          var userId = authData.id;
+          name = authData[authData.provider].displayName;
+      } else {
+        console.log("User is logged out");
+     }
+   }
+    myDataRef.onAuth(authDataCallback);
+
+
       $('#messageInput').keypress(function (e) {
         if (e.keyCode == 13) {
           if (!name){
             authModal.modal('show');
           }
-          var name = $('#nameInput').val();
+          // var name = $('#nameInput').val();
           var text = $('#messageInput').val();
           myDataRef.push({name: name, text: text});
           $('#messageInput').val('');
