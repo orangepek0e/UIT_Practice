@@ -1,14 +1,93 @@
-.visit {
-	background-color: #6a34c5;
-	height:437px;
-	color:white;
+.background{
+	background-color:#9E2222;
+	width:100%;
+	height:100%;
+	padding-top:30px;
+	padding-left:46px;
+	padding-right:76px;
+}
+#homePageBackground{
+	background-color:#5F4972;
+	background-size:cover;
+	min-width:1024px;
+	min-height:100%;
+	width:100%;
+	height:auto;
+	top:0;
+	left:0;
+	position:fixed;
+}
+#homePageText{
+	font-family:Roboto Slab;
+	text-align:center;
+	color:#FFFFFF;
+	font-size:72px;
+	padding-top:18%;
+}
+.emotionIcon{
+	width:52%;
+	height:52%;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:5%;
+	margin-bottom:-11%;
+}
+.emotionIconText{
+	font-family:Roboto;
+	text-align:center;
+	color:#DFDBE3;
+	font-size:24px;
+}
+.chat-box{
+	background-color:#D8D8D8;
+	border-radius:40px;
+	width:1156px;
+	height:550px;
+	margin: 0 auto;
 }
 .inputBox{
+	margin-top:2%;
 	width:100%;
+	height:44px;
+	float:left;
+	border:none !important;
+	border-radius:40px;
+	padding-left:12px;
+	margin-top:13px;
+}
+#sendButton{
+	margin-top:25%;
+	margin-right:10%;
+	border-radius:32px;
+	background-color:#B97171;
+	width:76px;
+	height:44px;
+
+}
+.sendButton{
 	height:30px;
+	width:40px;
+}
+.buffer{
+	height:25px;
+}
+.message-box{
+	border:1px solid black;
+	border-radius:40px;
+	width:1156px;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:2%;
+	background-color:;
+	padding-right:10px;
 }
 .messages{
 	height:390px;
+	position:center;
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
 }
 .modal {
     position: relative !important;
@@ -17,4 +96,53 @@
     margin-top: -400px !important;
     background-color: transparent;
     width: 50% !important;
+}
+html, body {
+ height: 100%;
+}
+
+.navbar-toggle {
+ float: left;
+ margin-left: 15px;
+}
+
+.navmenu {
+ z-index: 1;
+}
+.plus{
+width:30px;
+height:30px;
+float:right;
+
+}
+.canvas {
+ position: relative;
+ left: 0;
+ z-index: 2;
+ min-height: 100%;
+ padding: 50px 0 0 0;
+ background: #fff;
+}
+.btn-warning{
+	float:right;
+}
+
+@media (min-width: 0) {
+ .navbar-toggle {
+   display: block; /* force showing the toggle */
+ }
+}
+
+@media (min-width: 992px) {
+ body {
+   padding: 0;
+ }
+ .navbar {
+   right: auto;
+   background: none;
+   border: none;
+ }
+ .canvas {
+   padding: 0;
+ }
 }
