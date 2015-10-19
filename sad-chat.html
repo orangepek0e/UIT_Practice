@@ -20,17 +20,9 @@
     <link rel='stylesheet' type='text/css' href='/css/style.css'>
   </head>
   <body>
-   <div class='background'>
-    <div class="row">
-      <div class="col-md-10">
-           <!-- <img src="/css/plus.png">  -->
-      </div>
-     <div class='col-md-2'>
-         <button type="button" class="btn btn-warning pull-right" onclick=logout();>Logout</button>
-      </div>
-    </div>
+   <div class='backgroundSad'>
       <div class='container'>
-        <div class='chat-box'>
+        <div class='chat-box-sad'>
         <div class='row'>
           <div class='col-md-2'>
             <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
@@ -68,20 +60,27 @@
          </div>
        </div>
      </div>
-     <div id='messagesDiv' class='messages'></div>
+     <div id='messagesDiv' class='messages-sad'></div>
     </div>
   </div>
-  <div class="row message-box">
-    <div class="col-md-1">
-  <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
-    <img class='plus' src="/css/plus.png"> 
-  </button>
+  <div class="row message-box-sad">
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="input-group buffer2">
+      <span class="input-group-btn">
+        <button type="button" class="btn-plus" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+          <img class='plus' src="/css/plus.png">
+          </button>
+        </span>
+              <input type="text" id='messageInput' class="form-control" placeholder="Empty your heart. Let it out. Cry.">
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+         <!--<input type='text' id='messageInput' class="inputBox" placeholder='Get Angry. Let Loose. Vent.'>-->
     </div>
-    <div class='col-md-10'>
-          <input type='text' id='messageInput' class="inputBox" placeholder='Get Angry. Let Loose. Vent.'>
-    </div>
-    <div class='col-md-1'>
-      <button type="button" id='sendButton'> <img class="sendButton" src='/css/send.png'> </button>
+    <div class='col-md-2 send-btn'>
+      <button type="button" id='sendButtonSad' onclick=sendButton()> <img class="sendButton" src='/css/send.png'> </button>
     </div>
     </div>
   </div>
@@ -118,7 +117,12 @@
 </div>
     <script>
       var myDataRef = new Firebase('https://george-slack-clone.firebaseio.com/');
-      var name = '';
+      var name = location.search.split('name=')[1];
+      if(name === "undefined"){
+        alert("eys");
+        window.location.href="homePage.html";
+      } else{
+      }
       var authModal = $('#auth-modal').modal( {show: false});
      function authDataCallback(authData) {
       if (authData) {
@@ -131,20 +135,24 @@
    }
     myDataRef.onAuth(authDataCallback);
 
-
+     function sendButton(){
+       var text = $('#messageInput').val();
+       myDataRef.child("sad").push({name: name, text: text});
+       $('#messageInput').val('');
+     }
       $('#messageInput').keypress(function (e) {
         if (e.keyCode == 13) {
-          if (!name){
-            authModal.modal('show');
-          } else{
+//          if (!name){
+//            authModal.modal('show');
+//          } else{
              // var name = $('#nameInput').val();
           var text = $('#messageInput').val();
-          myDataRef.push({name: name, text: text});
+          myDataRef.child("sad").push({name: name, text: text});
           $('#messageInput').val('');
-          }
+//          }
         }
       });
-      myDataRef.on('child_added', function(snapshot) {
+      myDataRef.child("sad").on('child_added', function(snapshot) {
         var message = snapshot.val();
         displayChatMessage(message.name, message.text);
       });

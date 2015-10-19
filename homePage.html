@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 	<head>
+	 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 	 <!--BOOTSTRAP (CSS)-->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	 <!--BOOTSTRAP (JAVASCRIPT) -->
@@ -8,7 +9,6 @@
      <!-- Font Awesome -->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
      <link rel='stylesheet' type='text/css' href='/css/style.css'>
-      <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 	</head>
 
 <body>
@@ -29,21 +29,21 @@
 		  <div class="row">
 		  	<div class="col-md-4">
 		  		<div>
-		  			<a href="angry-chat.html" onclick="userName();"><img class="emotionIcon" src="/icons/angry-icon.png"></a>
+		  			<a onclick="mood('angry');"><img class="emotionIcon" src="/icons/angry-icon.png"></a>
 		  		</div>
 		  		<p class="emotionIconText">Angry</p>
 
 		  	</div>
 		  	<div class="col-md-4">
 		  		<div>
-		  			<img class="emotionIcon" src="/icons/sad-icon.png">
+		  			<a  onclick="mood('sad');"><img class="emotionIcon" src="/icons/sad-icon.png"></a>
 		  		</div>
 		  		<p class="emotionIconText">Sad</p>
 		  		
 		  	</div>
 		  	<div class="col-md-4">
 		  		<div>
-		  			<img class="emotionIcon" src="/icons/happy-icon.png">
+		  			<a onclick="mood('happy');"><img class="emotionIcon" src="/icons/happy-icon.png"></a>
 		  		</div>
 		  		<p class="emotionIconText">Happy</p>
 		  		
@@ -51,5 +51,73 @@
 		  </div>
 		</div>
 	</div>
+	<div class="modal fade" id="nameModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content" id="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="modal-title">What is your name?</h4>
+	        <!--<input class="modal-title" id="title" val=""> </input>-->
+	      </div>
+	      <div class="modal-body" id="modal-body">
+	        <input type="text" id="userName" class="modal-textBox" value="" />
+	        <input hidden type="text" id="userFeel" class="modal-textBox" value="" />
+	        <!--<button type="submit" class="btn" data-dismiss="modal" onclick="verifyName();">Submit</button>-->
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+<script>
+
+
+var userName = false;
+var userFeel = '';
+
+function verifyName() {
+	if ($("#userName").val() == "") {
+		alert("Please enter username");
+	} else{
+		userName = $("#userName").val();
+		userFeel = $("#userFeel").val();
+		console.log(userFeel);
+
+		$("#nameModal").modal("hide");
+
+		switch(userFeel){
+			case "angry":
+				window.location.href="/angry-chat.html?name="+ userName;
+				break;
+			case "sad":
+				window.location.href="/sad-chat.html?name="+ userName;
+				break;
+			case "happy":
+				window.location.href="/happy-chat.html?name="+ userName;
+				break;
+		}
+	}
+}
+
+function mood(feel) {
+	if (userName==false){
+		var userFeel = feel;
+		console.log(userFeel);
+		$("#nameModal").modal();
+		$(".modal-body #userFeel").val(userFeel);
+
+
+	}
+
+}
+
+
+
+$('#userName').keypress(function (e) {
+	if (e.keyCode == 13) {
+		userFeel = $("#userFeel").val();
+		console.log(userFeel);
+		verifyName();
+	}
+});
+</script>
 </body>
 </html>

@@ -20,9 +20,9 @@
     <link rel='stylesheet' type='text/css' href='/css/style.css'>
   </head>
   <body>
-   <div class='backgroundAngry'>
+   <div class='backgroundHappy'>
       <div class='container'>
-        <div class='chat-box'>
+        <div class='chat-box-happy'>
         <div class='row'>
           <div class='col-md-2'>
             <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
@@ -73,14 +73,14 @@
           <img class='plus' src="/css/plus.png">
           </button>
         </span>
-              <input type="text" id='messageInput' class="form-control" placeholder="Get Angry. Let Loose. Vent.">
+              <input type="text" id='messageInput' class="form-control" placeholder="Get happy! Sing out! Gush.">
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
       </div><!-- /.row -->
          <!--<input type='text' id='messageInput' class="inputBox" placeholder='Get Angry. Let Loose. Vent.'>-->
     </div>
     <div class='col-md-2 send-btn'>
-      <button type="button" id='sendButton' onclick=sendButton()> <img class="sendButton" src='/css/send.png'> </button>
+      <button type="button" id='sendButtonHappy' onclick=sendButton()> <img class="sendButton" src='/css/send.png'> </button>
     </div>
     </div>
   </div>
@@ -137,7 +137,7 @@
 
      function sendButton(){
        var text = $('#messageInput').val();
-       myDataRef.child("angry").push({name: name, text: text});
+       myDataRef.child("happy").push({name: name, text: text});
        $('#messageInput').val('');
      }
       $('#messageInput').keypress(function (e) {
@@ -147,12 +147,12 @@
 //          } else{
              // var name = $('#nameInput').val();
           var text = $('#messageInput').val();
-          myDataRef.child("angry").push({name: name, text: text});
+          myDataRef.child("happy").push({name: name, text: text});
           $('#messageInput').val('');
 //          }
         }
       });
-      myDataRef.child("angry").on('child_added', function(snapshot) {
+      myDataRef.child("happy").on('child_added', function(snapshot) {
         var message = snapshot.val();
         displayChatMessage(message.name, message.text);
       });
