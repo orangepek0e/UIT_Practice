@@ -43,7 +43,7 @@
 	font-family:Roboto Slab;
 	text-align:center;
 	color:#FFFFFF;
-	font-size:72px;
+	font-size:6em;
 	padding-top:18%;
 }
 #modal-content {
@@ -75,8 +75,8 @@
 	text-align:center;
 }
 .emotionIcon{
-	width:52%;
-	height:52%;
+	width:60%;
+	height:60%;
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
@@ -119,7 +119,7 @@
 	height:600px;
 	margin: 0 auto;
 	margin-bottom:2%;
-	background-color:rgba(185,113,113,.67);
+	background-color:rgba(255,255,255,.67);
 	/*opacity: 0.58;*/
 	/*background: #E1E1E1;*/
 	border: 1px solid ;
