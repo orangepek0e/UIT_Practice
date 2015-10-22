@@ -5,7 +5,10 @@
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <!-- jQUERY -->
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-    
+      <!--<script type="text/javascript" src="//use.typekit.net/ivu8ilu.js"></script>-->
+      <!--<script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+      <script type="text/javascript" src="/emojione.js"></script>
+      <link rel="/css/emojione.css">
     <!--BOOTSTRAP (CSS)-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!--BOOTSTRAP (JAVASCRIPT) -->
@@ -174,9 +177,16 @@
       }
 
       function displayChatMessage(name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+//        $('<div/>').text(convert(text)).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+          $('#messagesDiv').append('<div><em>'+ name + ':</em> ' + convert(text)+ '</div>');
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
       };
+
+      function convert(text) {
+          var input = text;
+          var output = emojione.shortnameToImage(input);
+          return output;
+      }
     </script>
   </body>
 </html>
